@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ibrahim Khaleelulla Mohammad | Data Scientist & GenAI Engineer</title>
+<meta name="description" content="Portfolio of Ibrahim Khaleelulla Mohammad — Data Scientist and Generative AI Engineer specializing in LLMs, RAG, LangChain, and end-to-end AI pipelines." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg-2: #0d1322;
+    --bg-3: #131a2e;
+    --panel: #111827;
+    --border: #1f2a44;
+    --border-strong: #2a3a5f;
+    --text: #e6edf6;
+    --text-dim: #9aa6bd;
+    --text-muted: #6b7896;
+    --accent: #22d3ee;       /* cyan-400 */
+    --accent-2: #a78bfa;     /* violet-400 */
+    --accent-3: #34d399;     /* emerald-400 */
+    --warn: #fbbf24;
+    --danger: #f87171;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --radius: 14px;
+    --shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(at 15% 10%, rgba(34, 211, 238, 0.10) 0px, transparent 50%),
+      radial-gradient(at 85% 0%, rgba(167, 139, 250, 0.10) 0px, transparent 50%),
+      radial-gradient(at 50% 100%, rgba(52, 211, 153, 0.08) 0px, transparent 50%);
+    background-attachment: fixed;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  ::selection { background: rgba(34, 211, 238, 0.3); color: #fff; }
+
+  /* Navbar */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: rgba(10, 14, 26, 0.75);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 28px;
+  }
+  .brand {
+    font-family: var(--mono); font-weight: 700; font-size: 0.95rem;
+    color: var(--text);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .brand .dot { color: var(--accent); }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a {
+    color: var(--text-dim);
+    font-family: var(--mono); font-size: 0.85rem;
+    text-decoration: none; transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-links a .num { color: var(--accent); margin-right: 6px; }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* Layout */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+  section { padding: 110px 0 60px; scroll-margin-top: 60px; }
+  .section-title {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 1.7rem; margin: 0 0 36px;
+    color: var(--text);
+  }
+  .section-title .num {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  .section-title::after {
+    content: ""; flex: 1; height: 1px; background: var(--border);
+    margin-left: 12px; max-width: 240px;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 92vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding-top: 60px;
+    position: relative;
+  }
+  .hero .greeting {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 1rem;
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 6vw, 4.4rem);
+    margin: 0 0 8px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.05;
+  }
+  .hero h2 {
+    font-size: clamp(1.6rem, 4.5vw, 3.2rem);
+    margin: 0 0 26px;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .hero h2 .grad {
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .hero p {
+    color: var(--text-dim);
+    max-width: 640px;
+    font-size: 1.05rem;
+    margin: 0 0 36px;
+  }
+  .hero-cta {
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    border-radius: 8px;
+    font-family: var(--mono); font-size: 0.9rem;
+    background: transparent;
+    cursor: pointer;
+    transition: all .25s;
+    text-decoration: none;
+  }
+  .btn:hover {
+    background: rgba(34, 211, 238, 0.10);
+    transform: translateY(-3px);
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(34,211,238,0.18);
+  }
+  .btn.primary { background: rgba(34,211,238,0.07); }
+
+  /* Side rails */
+  .rail {
+    position: fixed; bottom: 0;
+    display: flex; flex-direction: column; align-items: center;
+    z-index: 40;
+  }
+  .rail.left { left: 30px; }
+  .rail.right { right: 30px; }
+  .rail::after {
+    content: ""; display: block;
+    width: 1px; height: 90px;
+    background: var(--text-muted);
+    margin-top: 18px;
+  }
+  .rail a {
+    color: var(--text-dim);
+    margin: 10px 0;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    transition: all .2s;
+  }
+  .rail.right a {
+    writing-mode: vertical-rl;
+    letter-spacing: 2px;
+  }
+  .rail a:hover { color: var(--accent); transform: translateY(-3px); text-decoration: none; }
+  .rail .ic { display: inline-block; padding: 8px; }
+  @media (max-width: 1100px) { .rail { display: none; } }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: 50px;
+    align-items: center;
+  }
+  @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-grid p { color: var(--text-dim); }
+  .about-grid p strong { color: var(--text); font-weight: 600; }
+  .avatar {
+    position: relative;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    overflow: hidden;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(167,139,250,0.18));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    font-size: 5.5rem;
+    font-weight: 700;
+    color: var(--accent);
+    box-shadow: 0 10px 60px rgba(34,211,238,0.18);
+    transition: transform .35s;
+  }
+  .avatar:hover { transform: translate(-6px, -6px); box-shadow: 6px 6px 0 var(--accent); }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+    margin-top: 14px;
+  }
+  .skill-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 22px;
+    transition: all .25s;
+  }
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+  .skill-card h4 {
+    margin: 0 0 12px;
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .tag {
+    background: rgba(34,211,238,0.08);
+    color: var(--text);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: var(--mono);
+    border: 1px solid var(--border-strong);
+  }
+
+  /* Experience tabs */
+  .exp-wrap {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 720px) { .exp-wrap { grid-template-columns: 1fr; } }
+  .exp-tabs {
+    display: flex; flex-direction: column;
+    border-left: 2px solid var(--border);
+  }
+  @media (max-width: 720px) {
+    .exp-tabs { flex-direction: row; overflow-x: auto; border-left: none; border-bottom: 2px solid var(--border); }
+  }
+  .exp-tab {
+    background: transparent;
+    color: var(--text-dim);
+    border: none;
+    padding: 14px 20px;
+    text-align: left;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all .2s;
+    border-left: 2px solid transparent;
+    margin-left: -2px;
+    white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .exp-tab { border-left: none; border-bottom: 2px solid transparent; margin-left: 0; margin-bottom: -2px; }
+  }
+  .exp-tab:hover { color: var(--accent); background: rgba(34,211,238,0.05); }
+  .exp-tab.active { color: var(--accent); border-color: var(--accent); }
+  .exp-content { display: none; }
+  .exp-content.active { display: block; animation: fade .4s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+  .exp-content h3 { margin: 0 0 6px; font-size: 1.25rem; }
+  .exp-content h3 .at { color: var(--accent); }
+  .exp-content .date { font-family: var(--mono); color: var(--text-muted); font-size: 0.85rem; margin-bottom: 18px; }
+  .exp-content ul { padding-left: 22px; margin: 0; }
+  .exp-content li { color: var(--text-dim); margin-bottom: 12px; position: relative; padding-left: 6px; }
+  .exp-content li::marker { color: var(--accent); }
+
+  /* Projects */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+  }
+  .project-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    display: flex; flex-direction: column;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 50%, rgba(34,211,238,0.05));
+    opacity: 0; transition: opacity .3s;
+    pointer-events: none;
+  }
+  .project-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+  .project-card:hover::before { opacity: 1; }
+  .project-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px;
+  }
+  .project-icon {
+    font-size: 2.2rem; color: var(--accent);
+  }
+  .project-links { display: flex; gap: 14px; color: var(--text-dim); }
+  .project-card h3 { margin: 0 0 10px; font-size: 1.2rem; color: var(--text); }
+  .project-card p { color: var(--text-dim); font-size: 0.92rem; margin: 0 0 18px; flex-grow: 1; }
+  .project-tech {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-wrap: wrap; gap: 8px 14px;
+    font-family: var(--mono); font-size: 0.78rem; color: var(--text-muted);
+  }
+  .featured-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: rgba(34,211,238,0.1);
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+  }
+
+  /* Education */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+  }
+  .edu-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    border-left: 3px solid var(--accent);
+    transition: all .25s;
+  }
+  .edu-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .edu-card h3 { margin: 0 0 6px; font-size: 1.1rem; }
+  .edu-card .school { color: var(--accent); font-family: var(--mono); font-size: 0.9rem; margin-bottom: 6px; }
+  .edu-card .date { color: var(--text-muted); font-family: var(--mono); font-size: 0.82rem; }
+
+  /* Contact */
+  .contact { text-align: center; padding-bottom: 100px; }
+  .contact h2 { font-size: 3rem; margin: 0 0 16px; }
+  .contact .pre { color: var(--accent); font-family: var(--mono); margin-bottom: 14px; }
+  .contact p { color: var(--text-dim); max-width: 540px; margin: 0 auto 36px; }
+
+  /* Footer */
+  footer {
+    text-align: center; padding: 28px 0;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--text-muted); }
+  footer a:hover { color: var(--accent); }
+
+  /* Reveal animation */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Code block accent */
+  .code-line {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 0.9rem;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">&lt;<span class="dot">IK</span>/&gt;</div>
+    <div class="nav-links">
+      <a href="#about"><span class="num">01.</span>About</a>
+      <a href="#skills"><span class="num">02.</span>Skills</a>
+      <a href="#experience"><span class="num">03.</span>Experience</a>
+      <a href="#projects"><span class="num">04.</span>Projects</a>
+      <a href="#contact"><span class="num">05.</span>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Side rails -->
+<div class="rail left" aria-hidden="true">
+  <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="ic" title="LinkedIn">in</a>
+  <a href="mailto:ibrahimkhmd999@gmail.com" class="ic" title="Email">@</a>
+  <a href="tel:+12695508269" class="ic" title="Phone">☎</a>
+</div>
+<div class="rail right" aria-hidden="true">
+  <a href="mailto:ibrahimkhmd999@gmail.com">ibrahimkhmd999@gmail.com</a>
+</div>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="greeting reveal">Hi, my name is</div>
+    <h1 class="reveal">Ibrahim Khaleelulla Mohammad.</h1>
+    <h2 class="reveal">I build <span class="grad">Generative&nbsp;AI</span> &amp; data-driven solutions.</h2>
+    <p class="reveal">
+      I'm a Data Scientist and Generative AI Engineer focused on turning real-world business problems into
+      production-ready AI systems — designing end-to-end pipelines with LLMs, LangChain, RAG, and modern data tooling.
+      Currently building intelligent applications that combine retrieval, reasoning, and automation.
+    </p>
+    <div class="hero-cta reveal">
+      <a class="btn primary" href="#projects">View My Work →</a>
+      <a class="btn" href="#contact">Get In Touch</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title reveal"><span class="num">01.</span> About Me</h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>
+          Hello! I'm <strong>Ibrahim</strong>, an AI and data-focused professional with hands-on experience building and deploying
+          <strong>Generative AI</strong> and data-driven solutions in enterprise and product environments. I recently completed my
+          <strong>M.S. in Data Science</strong> at Western Michigan University, and I love working at the intersection of
+          machine learning, language models, and engineering.
+        </p>
+        <p>
+          My focus is on building <strong>production-ready Generative AI applications</strong> — designing end-to-end pipelines that include
+          document ingestion, chunking, vector embeddings, semantic search, and response generation using
+          <strong>LangChain</strong>, <strong>RAG</strong>, and <strong>LLMs</strong>. I also bring solid full-stack and data engineering
+          fundamentals: REST API integration, ETL pipelines, data validation, and analytics dashboards.
+        </p>
+        <p>
+          Previously at <strong>Accenture</strong>, I worked on a large banking client engagement focused on
+          <strong>risk detection and Anti-Money Laundering (AML)</strong>, maintaining rule logic and analyzing customer
+          transaction patterns to improve detection accuracy. Today I'm channeling that same mix of analytical rigor and
+          engineering discipline into the AI space.
+        </p>
+        <p class="code-line">&gt; Always learning. Always shipping.</p>
+      </div>
+      <div class="reveal">
+        <div class="avatar" aria-hidden="true">IK</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="section-title reveal"><span class="num">02.</span> Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>AI &amp; Generative AI</h4>
+        <div class="skill-tags">
+          <span class="tag">LLMs</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">Multimodal AI</span>
+          <span class="tag">Embeddings</span>
+          <span class="tag">Semantic Search</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>AI &amp; Data Systems</h4>
+        <div class="skill-tags">
+          <span class="tag">End-to-End AI Pipelines</span>
+          <span class="tag">Data Collection</span>
+          <span class="tag">Data Mining</span>
+          <span class="tag">Data Analysis</span>
+          <span class="tag">Feature Engineering</span>
+          <span class="tag">Model Integration</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Full Stack &amp; Integration</h4>
+        <div class="skill-tags">
+          <span class="tag">REST APIs</span>
+          <span class="tag">External Tool / API Integration</span>
+          <span class="tag">Automation Workflows</span>
+          <span class="tag">AI App Development</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Data Engineering</h4>
+        <div class="skill-tags">
+          <span class="tag">ETL Pipelines</span>
+          <span class="tag">Data Cleaning</span>
+          <span class="tag">Data Validation</span>
+          <span class="tag">Data Integration</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Analytics &amp; Visualization</h4>
+        <div class="skill-tags">
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Dashboard Development</span>
+          <span class="tag">KPI Tracking</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>Development Practices</h4>
+        <div class="skill-tags">
+          <span class="tag">Agile / Scrum</span>
+          <span class="tag">Debugging</span>
+          <span class="tag">Testing</span>
+          <span class="tag">Performance Optimization</span>
+          <span class="tag">Technical Documentation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2 class="section-title reveal"><span class="num">03.</span> Where I've Worked</h2>
+    <div class="exp-wrap reveal">
+      <div class="exp-tabs" role="tablist">
+        <button class="exp-tab active" data-tab="reality" role="tab">Reality AI Lab</button>
+        <button class="exp-tab" data-tab="accenture" role="tab">Accenture</button>
+      </div>
+      <div>
+        <div class="exp-content active" id="reality">
+          <h3>Generative AI Engineer <span class="at">@ Reality AI Lab</span></h3>
+          <div class="date">Jan 2025 – April 2025 · USA</div>
+          <ul>
+            <li>Built and deployed Generative AI applications using <strong>LangChain, LLMs, and Retrieval-Augmented Generation (RAG)</strong> to solve real-world business problems.</li>
+            <li>Designed end-to-end AI pipelines including document ingestion, chunking, vector embeddings, semantic search, and response generation.</li>
+            <li>Integrated AI models with external APIs and tools to enable automation and context-aware reasoning.</li>
+            <li>Performed data collection, preprocessing, and validation to support accurate AI-driven insights.</li>
+            <li>Tested, debugged, and optimized AI systems to improve performance, reliability, and responsible AI usage.</li>
+            <li>Collaborated with cross-functional teams in Agile environments to deliver production-ready AI solutions.</li>
+          </ul>
+        </div>
+        <div class="exp-content" id="accenture">
+          <h3>Associate Software Engineer <span class="at">@ Accenture</span></h3>
+          <div class="date">Oct 2021 – Dec 2022 · India</div>
+          <ul>
+            <li>Worked with cross-functional teams (product owners, BAs, developers, QA) to design, develop, and support scalable enterprise solutions for a large banking client.</li>
+            <li>Participated in <strong>end-to-end project delivery</strong> — requirements gathering, functional analysis, implementation, testing, and post-deployment support.</li>
+            <li>Played a key role in <strong>risk detection and Anti-Money Laundering (AML)</strong> initiatives by updating and maintaining business rules, logic translations, and decision workflows.</li>
+            <li>Analyzed customer behavior, transaction patterns, and feedback to optimize rule effectiveness and improve risk prioritization.</li>
+            <li>Assisted in refining and validating data models and rule logic, balancing business needs, system performance, and cost constraints while meeting client-defined SLAs.</li>
+            <li>Contributed actively in an Agile environment — sprint planning, daily stand-ups, backlog grooming, and code reviews.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2 class="section-title reveal"><span class="num">04.</span> Featured Projects</h2>
+    <div class="projects-grid">
+
+      <article class="project-card reveal">
+        <div class="project-head">
+          <div class="project-icon">⚡</div>
+          <div class="project-links"><span title="Production">●</span></div>
+        </div>
+        <span class="featured-tag">REAL-TIME · PRODUCTION</span>
+        <h3>Enterprise RAG-Based Knowledge Assistant</h3>
+        <p>
+          Built and deployed a production-grade Generative AI assistant that ingests internal documents and answers
+          domain-specific questions with citations. Architected the full pipeline: chunking, embeddings, vector store
+          retrieval, prompt orchestration with LangChain, and grounded LLM responses — reducing manual lookup time
+          across business teams.
+        </p>
+        <ul class="project-tech">
+          <li>Python</li><li>LangChain</li><li>LLMs</li><li>RAG</li><li>Vector DB</li><li>Embeddings</li>
+        </ul>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-head">
+          <div class="project-icon">🔗</div>
+          <div class="project-links"><span title="Production">●</span></div>
+        </div>
+        <span class="featured-tag">REAL-TIME · PRODUCTION</span>
+        <h3>AI Automation &amp; Tool-Use Agent</h3>
+        <p>
+          Designed an agentic system that integrates LLMs with external REST APIs and internal tools to perform
+          context-aware automation — fetching live data, calling business endpoints, and reasoning over the responses.
+          Implemented guardrails, retries, and structured-output parsing for reliability.
+        </p>
+        <ul class="project-tech">
+          <li>Python</li><li>LangChain Agents</li><li>REST APIs</li><li>Prompt Engineering</li><li>Tool Use</li>
+        </ul>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-head">
+          <div class="project-icon">🛡️</div>
+          <div class="project-links"><span title="Enterprise">●</span></div>
+        </div>
+        <span class="featured-tag">ENTERPRISE · BANKING</span>
+        <h3>AML &amp; Risk Detection Rule Engine</h3>
+        <p>
+          Contributed to an Anti-Money Laundering platform for a major banking client. Maintained and refined business
+          rules and decision workflows, translated regulatory requirements into logic, and analyzed transaction
+          patterns to improve suspicious-activity detection accuracy and reduce false positives.
+        </p>
+        <ul class="project-tech">
+          <li>SQL</li><li>Rule Engines</li><li>Risk Analytics</li><li>Data Validation</li><li>Agile</li>
+        </ul>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-head">
+          <div class="project-icon">🧩</div>
+          <div class="project-links"><span title="Pipeline">●</span></div>
+        </div>
+        <span class="featured-tag">END-TO-END · PIPELINE</span>
+        <h3>Document Ingestion &amp; Semantic Search Pipeline</h3>
+        <p>
+          Engineered a modular document-processing pipeline: parsing → cleaning → chunking → embedding → indexing.
+          Optimized chunking strategies and retrieval scoring to improve answer relevance for downstream RAG
+          applications, with monitoring hooks for latency and quality.
+        </p>
+        <ul class="project-tech">
+          <li>Python</li><li>Embeddings</li><li>Semantic Search</li><li>ETL</li><li>Data Cleaning</li>
+        </ul>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-head">
+          <div class="project-icon">📊</div>
+          <div class="project-links"><span title="Analytics">●</span></div>
+        </div>
+        <span class="featured-tag">ANALYTICS · DASHBOARDS</span>
+        <h3>Business KPI &amp; Behavior Analytics Dashboards</h3>
+        <p>
+          Built interactive dashboards in Power BI and Tableau to track KPIs, customer behavior, and transaction
+          patterns. Translated raw operational data into actionable visualizations that supported stakeholder
+          decision-making and rule-tuning for risk workflows.
+        </p>
+        <ul class="project-tech">
+          <li>Power BI</li><li>Tableau</li><li>SQL</li><li>KPI Tracking</li><li>Data Mining</li>
+        </ul>
+      </article>
+
+      <article class="project-card reveal">
+        <div class="project-head">
+          <div class="project-icon">🧪</div>
+          <div class="project-links"><span title="Reliability">●</span></div>
+        </div>
+        <span class="featured-tag">RELIABILITY · OPTIMIZATION</span>
+        <h3>LLM Evaluation &amp; Performance Optimization</h3>
+        <p>
+          Set up testing and evaluation routines for Generative AI applications — measuring response quality,
+          hallucination rate, latency, and prompt sensitivity. Iteratively tuned prompts, retrieval parameters, and
+          model choices to deliver measurable improvements and responsible-AI safeguards.
+        </p>
+        <ul class="project-tech">
+          <li>Prompt Engineering</li><li>Evaluation</li><li>Testing</li><li>Performance Tuning</li><li>Responsible AI</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2 class="section-title reveal"><span class="num">05.</span> Education</h2>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <h3>Master of Science in Data Science</h3>
+        <div class="school">Western Michigan University · Kalamazoo, MI</div>
+        <div class="date">Jan 2023 – Apr 2025</div>
+      </div>
+      <div class="edu-card reveal">
+        <h3>Bachelor of Science in Mechanical Engineering</h3>
+        <div class="school">Koneru Lakshmaiah University · Vijayawada, AP, India</div>
+        <div class="date">Jun 2017 – May 2021</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="pre reveal">06. What's Next?</div>
+    <h2 class="reveal">Get In Touch.</h2>
+    <p class="reveal">
+      I'm currently exploring new opportunities in <strong>Data Science</strong> and <strong>Generative AI Engineering</strong>.
+      Whether you have a question, a project idea, or just want to say hi — my inbox is always open. I'll do my best to get back to you.
+    </p>
+    <a class="btn primary reveal" href="mailto:ibrahimkhmd999@gmail.com">Say Hello →</a>
+  </section>
+
+</main>
+
+<footer>
+  <div>Designed &amp; Built by Ibrahim Khaleelulla Mohammad · <a href="mailto:ibrahimkhmd999@gmail.com">ibrahimkhmd999@gmail.com</a> · (269) 550-8269</div>
+</footer>
+
+<script>
+  // Tabs
+  const tabs = document.querySelectorAll('.exp-tab');
+  const contents = document.querySelectorAll('.exp-content');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
