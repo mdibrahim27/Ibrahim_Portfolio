@@ -47,4 +47,4 @@ Everything lives in `index.html`. The most common things you'll want to change:
 ## Contact
 
 - Email: ibrahimkhmd999@gmail.com
-- Phone: (269) 550-8269
+  
